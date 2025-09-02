@@ -7,7 +7,7 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -20,8 +20,10 @@
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
       text-align: center;
-      max-width: 500px;
+      width: 90%;       /* ancho flexible */
+      max-width: 500px; /* no excede 500px en pantallas grandes */
       animation: fadeIn 2s ease-in-out;
+      box-sizing: border-box;
     }
     h1 {
       color: #e91e63;
@@ -36,7 +38,7 @@
     .slideshow {
       position: relative;
       width: 100%;
-      height: 300px;
+      height: 300px; /* altura por defecto */
       overflow: hidden;
       border-radius: 15px;
       margin-top: 15px;
@@ -45,7 +47,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* recorta sin deformar */
       display: none;
     }
     .slideshow img.active {
@@ -64,6 +66,10 @@
     @media (max-width: 600px) {
       .slideshow {
         height: 400px;
+      }
+      .card {
+        width: 95%;
+        padding: 20px;
       }
     }
     /* Botón de audio */
@@ -90,7 +96,7 @@
     Gracias por existir en mi vida. ✨</p>
     
     <div class="slideshow">
-      <img src="Foto1.jpg" alt="Foto 1" class="active">
+      <img src="foto1.jpg" alt="Foto 1" class="active">
       <img src="foto2.jpg" alt="Foto 2">
       <img src="foto3.jpg" alt="Foto 3">
       <img src="foto4.jpg" alt="Foto 4">
@@ -114,7 +120,7 @@
       index = (index + 1) % images.length;
       images[index].classList.add("active");
     }
-    setInterval(showNextImage, 4000);
+    setInterval(showNextImage, 4000); // cambia cada 4 segundos
 
     // Control de audio
     const audio = document.getElementById("miAudio");
