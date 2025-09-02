@@ -39,6 +39,7 @@
       height: 300px;   /* altura por defecto (PC/tablet) */
       overflow: hidden;
       border-radius: 15px;
+      margin-top: 15px;
     }
     .slideshow img {
       position: absolute;
@@ -84,7 +85,14 @@
     </div>
   </div>
 
+  <!-- Audio de fondo -->
+  <audio autoplay loop>
+    <source src="audio.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
   <script>
+    // Carrusel de imágenes
     let index = 0;
     const images = document.querySelectorAll(".slideshow img");
 
@@ -98,4 +106,3 @@
   </script>
 </body>
 </html>
-
