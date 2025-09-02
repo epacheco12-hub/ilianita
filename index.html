@@ -36,7 +36,7 @@
     .slideshow {
       position: relative;
       width: 100%;
-      height: 300px;   /* altura por defecto (PC/tablet) */
+      height: 300px;
       overflow: hidden;
       border-radius: 15px;
       margin-top: 15px;
@@ -45,7 +45,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* recorta sin deformar */
+      object-fit: cover;
       display: none;
     }
     .slideshow img.active {
@@ -60,12 +60,25 @@
       from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
     }
-
-    /* Ajuste especial para móviles */
+    /* Ajuste para móviles */
     @media (max-width: 600px) {
       .slideshow {
-        height: 400px;  /* más alto en celular */
+        height: 400px;
       }
+    }
+    /* Botón de audio */
+    #audioControl {
+      margin-top: 15px;
+      padding: 8px 15px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #e91e63;
+      color: white;
+      cursor: pointer;
+    }
+    #audioControl:hover {
+      background-color: #d81b60;
     }
   </style>
 </head>
@@ -83,13 +96,13 @@
       <img src="foto4.jpg" alt="Foto 4">
       <img src="foto5.jpg" alt="Foto 5">
     </div>
-  </div>
 
-  <!-- Audio de fondo -->
-  <audio autoplay loop>
-    <source src="audio.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
+    <button id="audioControl">🎵 Reproducir música</button>
+    <audio id="miAudio" loop>
+      <source src="audio.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
+  </div>
 
   <script>
     // Carrusel de imágenes
@@ -101,8 +114,21 @@
       index = (index + 1) % images.length;
       images[index].classList.add("active");
     }
+    setInterval(showNextImage, 4000);
 
-    setInterval(showNextImage, 4000); // cambia cada 4 segundos
+    // Control de audio
+    const audio = document.getElementById("miAudio");
+    const btn = document.getElementById("audioControl");
+
+    btn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "⏸ Pausar música";
+      } else {
+        audio.pause();
+        btn.textContent = "🎵 Reproducir música";
+      }
+    });
   </script>
 </body>
 </html>
